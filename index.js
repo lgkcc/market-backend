@@ -13,7 +13,6 @@ app.use(cors())
 app.get('/', (req, res) => res.json('Server is worked'))
 app.get('/category', (req, res) => res.json('Server is worked'))
 app.get('/products', (req, res) => res.json('Server is worked'))
-app.get('/products/:categoryname', (req, res) => res.json('Server is worked'))
 app.get('/products/:id', (req, res) => res.json('Server is worked'))
 
 app.listen(4444, err => {
