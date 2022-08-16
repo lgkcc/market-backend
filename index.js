@@ -1,8 +1,8 @@
 import express from 'express'
 import mongoose from "mongoose";
 import cors from "cors";
-
-mongoose.connect('mongodb+srv://market-server:adminadmin@cluster0.0u1lptq.mongodb.net/?retryWrites=true&w=majority')
+import {connect} from "./config.js";
+mongoose.connect(connect)
     .then(() => {
         console.log('db connect')
     }).catch((err) => console.log('db error', err))

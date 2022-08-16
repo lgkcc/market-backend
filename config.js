@@ -1,0 +1,1 @@
+export const connect = 'mongodb+srv://market-server:adminadmin@cluster0.0u1lptq.mongodb.net/?retryWrites=true&w=majority'
