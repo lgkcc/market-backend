@@ -6,7 +6,12 @@ const ProductSchema = new mongoose.Schema({
         required: true
     },
     price: {
-        type: Number
+        type: Number,
+        required: true
+    },
+    categories: {
+        type: String,
+        required: true
     },
     ingredients: {
         type: Array,
