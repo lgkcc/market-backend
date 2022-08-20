@@ -9,6 +9,7 @@ import {
     removeProduct,
     updateProduct
 } from "./controllers/ProductController.js";
+import {addCategories, getCategories, removeCategories} from "./controllers/CategoryController.js";
 mongoose.connect(connect)
     .then(() => {
         console.log('db connect')
@@ -27,7 +28,9 @@ app.delete('/products/:id', removeProduct)
 app.patch('/products/:id', updateProduct)
 
 //Categories
-app.get('/category', (req, res) => res.json('Category'))
+app.get('/category', getCategories)
+app.post('/category', addCategories)
+app.delete('/category/:id', removeCategories)
 
 //Users
 
