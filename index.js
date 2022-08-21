@@ -2,24 +2,8 @@ import express from 'express'
 import mongoose from "mongoose";
 import cors from "cors";
 import {connect} from "./config.js";
-import {
-    addProduct,
-    getAllPr0duct,
-    getOneProduct,
-    removeProduct,
-    updateProduct
-} from "./controllers/ProductController.js";
-import {addCategories, getCategories, removeCategories} from "./controllers/CategoryController.js";
-import {
-    checkUserByToken,
-    getAllUser,
-    getOneUserById,
-    login,
-    register
-} from "./controllers/UserController.js";
-import checkAuth from './utils/checkAuth.js'
-import checkEmail from "./utils/checkEmail.js";
-import checkAdmin from "./utils/checkAdmin.js";
+import {checkAdmin, checkAuth, checkEmail} from "./utils/index.js";
+import {UserController, CategoryController, ProductController} from "./controllers/index.js";
 mongoose.connect(connect)
     .then(() => {
         console.log('db connect')
@@ -31,23 +15,23 @@ app.use(cors())
 app.get('/', (req, res) => res.json('Server is worked'))
 
 //Products
-app.get('/products', getAllPr0duct)
-app.get('/products/:id', getOneProduct)
-app.post('/products', checkAuth, checkAdmin, addProduct)
-app.delete('/products/:id', checkAuth, checkAdmin, removeProduct)
-app.patch('/products/:id', checkAuth, checkAdmin, updateProduct)
+app.get('/products', ProductController.getAllPr0duct)
+app.get('/products/:id', ProductController.getOneProduct)
+app.post('/products', checkAuth, checkAdmin, ProductController.addProduct)
+app.delete('/products/:id', checkAuth, checkAdmin, ProductController.removeProduct)
+app.patch('/products/:id', checkAuth, checkAdmin, ProductControlle.updateProduct)
 
 //Categories
-app.get('/category', getCategories)
-app.post('/category', checkAuth, checkAdmin, addCategories)
-app.delete('/category/:id', checkAuth, checkAdmin, removeCategories)
+app.get('/category', CategoryController.getCategories)
+app.post('/category', checkAuth, checkAdmin, CategoryController.addCategories)
+app.delete('/category/:id', checkAuth, checkAdmin, CategoryController.removeCategories)
 
 //Users
-app.get('/user', checkAuth, checkAdmin, getAllUser)
-app.get('/user/me', checkAuth, checkUserByToken)
-app.get('/user/:id', checkAuth, checkAdmin, getOneUserById)
-app.post('/user/login', login)
-app.post('/user/register', checkEmail, register)
+app.get('/user', checkAuth, checkAdmin, UserController.getAllUser)
+app.get('/user/me', checkAuth, UserController.checkUserByToken)
+app.get('/user/:id', checkAuth, checkAdmin, UserController.getOneUserById)
+app.post('/user/login', UserController.login)
+app.post('/user/register', checkEmail, UserController.register)
 // app.patch('/user/:id')
 
 
