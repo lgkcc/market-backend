@@ -19,7 +19,7 @@ app.get('/products', ProductController.getAllPr0duct)
 app.get('/products/:id', ProductController.getOneProduct)
 app.post('/products', checkAuth, checkAdmin, ProductController.addProduct)
 app.delete('/products/:id', checkAuth, checkAdmin, ProductController.removeProduct)
-app.patch('/products/:id', checkAuth, checkAdmin, ProductControlle.updateProduct)
+app.patch('/products/:id', checkAuth, checkAdmin, ProductController.updateProduct)
 
 //Categories
 app.get('/category', CategoryController.getCategories)
