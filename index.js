@@ -17,7 +17,7 @@ import {
     login,
     register
 } from "./controllers/UserController.js";
-import checkAuth from './utils/chackAuth.js'
+import checkAuth from './utils/checkAuth.js'
 import checkEmail from "./utils/checkEmail.js";
 import checkAdmin from "./utils/checkAdmin.js";
 mongoose.connect(connect)
