@@ -13,7 +13,8 @@ export const getCategories = async (req, res) => {
 export const addCategories = async (req, res) => {
     try {
         const doc = new CategoryModel({
-            title: req.body.title
+            title: req.body.title,
+            path: req.body.path
         })
         const product = await doc.save()
         res.json(product._doc)
