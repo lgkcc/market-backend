@@ -4,7 +4,7 @@ import cors from "cors";
 import multer from "multer";
 import {checkAdmin, checkAuth, checkEmail} from "./utils/index.js";
 import {UserController, CategoryController, ProductController} from "./controllers/index.js";
-mongoose.connect('mongodb+srv://market-server:adminadmin@cluster0.0u1lptq.mongodb.net/market?retryWrites=true&w=majority')
+mongoose.connect(process.env.MONGODB_URI)
     .then(() => {
         console.log('db connect')
     }).catch((err) => console.log('db error', err))
