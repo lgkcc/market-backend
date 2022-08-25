@@ -57,6 +57,6 @@ app.post('/user/register', checkEmail, UserController.register)
 
 
 
-app.listen(4444, err => {
+app.listen(process.env.PORT || 4444, err => {
     err ? console.log(err) : console.log('server start')
 })
