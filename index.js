@@ -1,6 +1,7 @@
 import express from 'express'
 import mongoose from "mongoose";
 import cors from "cors";
+import multer from "multer";
 import {connect} from "./config.js";
 import {checkAdmin, checkAuth, checkEmail} from "./utils/index.js";
 import {UserController, CategoryController, ProductController} from "./controllers/index.js";
@@ -10,9 +11,29 @@ mongoose.connect(connect)
     }).catch((err) => console.log('db error', err))
 
 const app = express()
+
+const storage = multer.diskStorage({
+    destination: (_, __, cb) => {
+        cb(null, 'uploads')
+    },
+    filename: (_, file, cb) => {
+        cb(null, file.originalname)
+    }
+})
+
+const upload = multer({storage})
+
 app.use(express.json())
 app.use(cors())
+
+app.use('/uploads', express.static('uploads'))
 app.get('/', (req, res) => res.json('Server is worked'))
+
+app.post('/upload', upload.single('image'), (req, res) => {
+    res.json({
+        url: `/uploads/${req.file.originalname}`
+    })
+})
 
 //Products
 app.get('/products', ProductController.getAllPr0duct)
