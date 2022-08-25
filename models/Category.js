@@ -8,6 +8,12 @@ const CategorySchema = new mongoose.Schema({
     path: {
         type: String,
         required: true
+    },
+    miniImageUrl: {
+        type: String
+    },
+    imageUrl: {
+        type: String
     }
 })
 
