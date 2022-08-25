@@ -1,1 +1,0 @@
-export const connect = process.env.MONGODB_URI

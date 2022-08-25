@@ -2,10 +2,9 @@ import express from 'express'
 import mongoose from "mongoose";
 import cors from "cors";
 import multer from "multer";
-import {connect} from "./config.js";
 import {checkAdmin, checkAuth, checkEmail} from "./utils/index.js";
 import {UserController, CategoryController, ProductController} from "./controllers/index.js";
-mongoose.connect(connect)
+mongoose.connect(process.env.MONGODB_URI)
     .then(() => {
         console.log('db connect')
     }).catch((err) => console.log('db error', err))
